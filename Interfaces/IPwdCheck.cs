@@ -1,6 +1,6 @@
-namespace Password.Checker.Interfaces;
+
 
 public interface IPwdCheck
 {
-    void 
+    public bool IsPasswordStrong(string password);
 }

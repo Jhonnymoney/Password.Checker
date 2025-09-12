@@ -1,35 +1,29 @@
-namespace Password.Checker.Classes;
-
-public class PwdCheck
+public class PwdCheck : IPwdCheck
 {
-    ////<summary>
-    ///Check if the Password is strong enough and has no spaces
-    ///<summary>
-    public string? Password;
-    public bool IsPasswordStrong(string password)
+    /// <summary>
+    /// Check if the Password is strong enough and has no spaces
+    /// </summary>
+    public bool IsPasswordStrong(string pwd)
     {
-        if (password.Length <= 8) return false;
+        if (pwd.Length <= 8) return false;
 
         bool hasSpecial = false;
         bool hasCaps = false;
         bool hasLower = false;
         bool hasDigit = false;
+        bool noSpace = true;
 
-        bool hasSpace = true;
-
-        foreach (char Letter in password) ;
+        foreach (char c in pwd)
         {
-            if (char.IsUpper(Letter)) hasCaps = true;
-            if (char.IsDigit(Letter)) hasDigit = true;
-            if (char.IsLower(Letter)) hasLower = true;
-            if (char.IsSpecial(Letter)) hasSpecial = true;
-        }
-        /// to check if there is a Space in the password
-        foreach (char Letter in password) ;
-        {
-            if (char.IsWhiteSpace(Letter)) hasSpace = false;
+            if (char.IsUpper(c)) hasCaps = true;
+            if (char.IsDigit(c)) hasDigit = true;
+            if (char.IsLower(c)) hasLower = true;
+            if (!char.IsLetterOrDigit(c)) hasSpecial = true;
+            if (char.IsWhiteSpace(c)) noSpace = false;
         }
 
+        if (!(hasCaps && hasDigit && hasLower && hasSpecial )) return false;  
 
-        
+        return true;
+    }
 }
