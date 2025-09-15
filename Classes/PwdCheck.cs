@@ -22,7 +22,7 @@ public class PwdCheck : IPwdCheck
             if (char.IsWhiteSpace(c)) noSpace = false;
         }
 
-        if (!(hasCaps && hasDigit && hasLower && hasSpecial )) return false;  
+        if (!(hasCaps && hasDigit && hasLower && hasSpecial && noSpace )) return false;  
 
         return true;
     }
